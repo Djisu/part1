@@ -2,71 +2,64 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const App = () => {
-    // const course = 'Half Stack application development'
-    // const part1 = 'Fundamentals of React'
-    // const exercises1 = 10
-    // const part2 = 'Using props to pass data'
-    // const exercises2 = 7
-    // const part3 = 'State of a component'
-    // const exercises3 = 14
-    
-    const course = 'Half Stack application development'
-    const parts = [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-
-    const Header = ({course}) => {
-        return (
-            <div>
-                <p>{course}</p>
-            </div>   
-        )      
+    const course  = {
+      name: 'Half Stack application development',
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7
+        },
+        {
+          name: 'State of a component',
+          exercises: 14
+        },
+      ]
     }
-   
-   
-    const Content = ({parts}) =>{
+  
+    const Header = (props) => {
+       // console.log(type of course)
         return (
-            <div>
-                <p>{parts[0].name} {parts[0].exercises}</p>
-                <p>{parts[1].name} {parts[1].exercises}</p>
-                <p>{parts[2].name} {parts[2].exercises}</p>
-            </div>
+            <p>
+                {props.name}
+            </p>
         )
     }
-    const Total = (props) => {
-        return (
-            <p>{parts[0].exercises +parts[1].exercises + parts[2].exercises}</p>
+
+    const Content = (props) => {  
+        return (          
+            <ul>
+                <li>{props.name0} {props.exercises0}</li><br />
+                <li>{props.name1} {props.exercises1}</li><br />
+                <li>{props.name2} {props.exercises2}</li><br />
+            </ul>
         )
     }
- 
+
+    const Total = (props) => {       
+        return (
+           <p>            
+              {props.exercises0 + props.exercises1 + props.exercises2}
+           </p> 
+        )
+    }
+
     
-   // const total = part1.exercises1 + part2.exercises2 + part3.exercises3
-
-    return (
-        <div>
-               <div>
-                    <Header course={course} />
-                    <Content parts={parts}  />
-                    <Total parts={parts} />
-               </div>
-           
-        </div>
-
+    return (    
+    <div>
+        
+        <Header name={course.name} />
+        <Content  name0={course.parts[0].name}  exercises0={course.parts[0].exercises} 
+                  name1={course.parts[1].name}  exercises1={course.parts[1].exercises}
+                  name2={course.parts[2].name}  exercises2={course.parts[2].exercises} 
+        />
+        <Total exercises0={course.parts[0].exercises} exercises1={course.parts[1].exercises}  exercises2={course.parts[2].exercises} />
+    </div>
     )
-
-}
-
+  }
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
